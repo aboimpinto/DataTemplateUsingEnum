@@ -2,12 +2,14 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:vm="using:DataTemplateUsingEnum.ViewModels"
 		xmlns:models="using:DataTemplateUsingEnum.Models"
+		xmlns:local="using:DataTemplateUsingEnum.Views"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 		x:Class="DataTemplateUsingEnum.Views.MainWindow"
 		Icon="/Assets/avalonia-logo.ico"
-		Title="DataTemplateUsingEnum">
+		Title="DataTemplateUsingEnum"
+		Width="800" Height="450">
 
 	<Design.DataContext>
 		<vm:MainWindowViewModel/>
@@ -19,29 +21,26 @@
 		HorizontalAlignment="Center"
 		VerticalAlignment="Center">
 
+		<ItemsControl.DataTemplates>
+			<local:StateDataTemplate>
+				<DataTemplate x:Key="NotStarted" DataType="models:State">
+					<TextBlock Background="Yellow" Text="{Binding Name}" />
+				</DataTemplate>
+				<DataTemplate x:Key="Running" DataType="models:State">
+					<TextBlock Background="Green" Text="{Binding Name}" />
+				</DataTemplate>
+				<DataTemplate x:Key="Finished" DataType="models:State">
+					<TextBlock Background="Gray" Text="{Binding Name}" />
+				</DataTemplate>
+			</local:StateDataTemplate>
+		</ItemsControl.DataTemplates>
+		
 		<ItemsControl.ItemTemplate>
 
-			<!--<RecyclingElementFactory>
-				<DataTemplate x:Key="notStarted" x:DataType="models:State">
-					<Panel>
-						<TextBlock Background="Red" Text="{Binding Name}" />
-					</Panel>
-				</DataTemplate>
-				
-				<RecyclingElementFactory.RecyclePool>
-					<RecyclePool />
-				</RecyclingElementFactory.RecyclePool>
-			</RecyclingElementFactory>-->
-			
 			<DataTemplate>
-				<Panel>
-					<TextBlock Text="{Binding Name}" />
-				</Panel>
+				<ContentControl Content="{Binding State}" />
 			</DataTemplate>
 		</ItemsControl.ItemTemplate>
 		
 	</ItemsControl>
-	
-	<!--<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
-
 </Window>
