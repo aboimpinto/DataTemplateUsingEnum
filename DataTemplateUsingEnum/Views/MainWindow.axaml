@@ -1,0 +1,47 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vm="using:DataTemplateUsingEnum.ViewModels"
+		xmlns:models="using:DataTemplateUsingEnum.Models"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		x:Class="DataTemplateUsingEnum.Views.MainWindow"
+		Icon="/Assets/avalonia-logo.ico"
+		Title="DataTemplateUsingEnum">
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+
+	<ItemsControl
+		Items="{Binding Items}"
+		HorizontalAlignment="Center"
+		VerticalAlignment="Center">
+
+		<ItemsControl.ItemTemplate>
+
+			<!--<RecyclingElementFactory>
+				<DataTemplate x:Key="notStarted" x:DataType="models:State">
+					<Panel>
+						<TextBlock Background="Red" Text="{Binding Name}" />
+					</Panel>
+				</DataTemplate>
+				
+				<RecyclingElementFactory.RecyclePool>
+					<RecyclePool />
+				</RecyclingElementFactory.RecyclePool>
+			</RecyclingElementFactory>-->
+			
+			<DataTemplate>
+				<Panel>
+					<TextBlock Text="{Binding Name}" />
+				</Panel>
+			</DataTemplate>
+		</ItemsControl.ItemTemplate>
+		
+	</ItemsControl>
+	
+	<!--<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+
+</Window>
